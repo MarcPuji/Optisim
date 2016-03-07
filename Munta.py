@@ -146,7 +146,7 @@ def arribada_C():
 def possible_carregar():
 	global caixes 
 	
-	pes = caixes['A'][0]*200+caixes['B'][0]*100+caixes['C'][0]*50
+	pes = caixes['C'][0]*200+caixes['B'][0]*100+caixes['A'][0]*50
 	
 	#mirem que el pes disponible sigui major que 400 i que estigui disponible el muntacarregues
 	return pes >= 400 and estat == 1
@@ -160,42 +160,42 @@ def carrega():
 	estat = 0
 	#proces d'ordenacio de caixes per ordre sequencial i ordenats de major nombre a menor, donant prioritat a les caixes mes grans en cas d'empat
 	#8 caixes (8*50)
-	if caixes['A'][0] >= 8:
-		caixes['A'][0]-=8 
+	if caixes['C'][0] >= 8:
+		caixes['C'][0]-=8 
 
 	#7 caixes (6*50+1*100)
-	elif caixes['A'][0] >= 6 and caixes['B'][0]>=1:
-		caixes['A'][0]-=6
+	elif caixes['C'][0] >= 6 and caixes['B'][0]>=1:
+		caixes['C'][0]-=6
 		caixes['B'][0]-=1
 
 	#6 caixes (4*50+2*100)
-	elif caixes['A'][0] >= 4 and caixes['B'][0]>=2:
-		caixes['A'][0]-=4
+	elif caixes['C'][0] >= 4 and caixes['B'][0]>=2:
+		caixes['C'][0]-=4
 		caixes['B'][0]-=2
 
 	#5 caixes (4*50+1*200 / 2*50+3*100)
-	elif caixes['A'][0]>=4 and caixes['C'][0]>=1:
-		caixes['A'][0]-=4
-		caixes['C'][0]-=1
-	elif caixes['A'][0]>=2 and caixes['B'][0]>=3:
-		caixes['A'][0]-=2
+	elif caixes['C'][0]>=4 and caixes['A'][0]>=1:
+		caixes['C'][0]-=4
+		caixes['A'][0]-=1
+	elif caixes['C'][0]>=2 and caixes['B'][0]>=3:
+		caixes['C'][0]-=2
 		caixes['B'][0]-=3
 
 	#4 caixes (2*50+1*100+1*200 / 4*100)
-	elif caixes['A'][0]>=2 and caixes['B'][0]>=1 and caixes['C'][0]>=1:
-		caixes['A'][0]-=2
+	elif caixes['C'][0]>=2 and caixes['B'][0]>=1 and caixes['A'][0]>=1:
+		caixes['C'][0]-=2
 		caixes['B'][0]-=1
-		caixes['C'][0]-=1
+		caixes['A'][0]-=1
 	elif caixes['B'][0]>=4:
 		caixes['B'][0]-=4
 
 	#3 caixes (2*100+2*200)
-	elif caixes['B'][0]>=2 and caixes['C'][0]>=1:
+	elif caixes['B'][0]>=2 and caixes['A'][0]>=1:
 		caixes['B'][0]-=2
-		caixes['C'][0]-=1
+		caixes['A'][0]-=1
 	#2 caixes (2*200)
-	elif caixes['C'][0]>=2:
-		caixes['C'][0]-=2
+	elif caixes['A'][0]>=2:
+		caixes['A'][0]-=2
 	
 	llista_esdeveniments.append([rellotge+4.0,'Muntacarregues disponible'])
 
