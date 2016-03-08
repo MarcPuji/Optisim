@@ -25,6 +25,7 @@ def simex3(max_temps):
 		if tipus == 'sortida prova':
 			sortida_prova()
 		
+		esdeveniment = obtenir_esdeveniment()
 	a = float(PCT/n)
 	b = float(PPT/n)
 	return [a,b]
