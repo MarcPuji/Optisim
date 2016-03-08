@@ -1,6 +1,6 @@
 import distex3
 
-def simex2(max_temps):
+def simex3(max_temps):
 	global rellotge
 	global n
 	global PCT
