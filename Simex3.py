@@ -20,8 +20,8 @@ def simex3(max_temps):
 		
 		if tipus == 'arribada pacient':
 			arribada_pacient()
-		if tipus == 'sortida pacient':
-			sortida_pacient()
+		if tipus == 'sortida consulta':
+			sortida_consulta()
 		if tipus == 'sortida prova':
 			sortida_prova()
 		
@@ -57,7 +57,7 @@ def afegir_arribada():
 	global llista_esdeveniments
 	
 	t = distex3.exp()
-	llista_esdeveniments.append([rellotge + t, 'arribada consulta'])
+	llista_esdeveniments.append([rellotge + t, 'arribada pacient'])
 
 def obtenir_esdeveniment():
 	global llista_esdeveniments
@@ -77,7 +77,7 @@ def arribada_pacient():
 	PC += 1
 	afegir_arribada()
 
-def sortida_pacient():
+def sortida_consulta():
 	global llista_esdeveniments
 	global rellotge
 	global PC
