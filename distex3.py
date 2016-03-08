@@ -1,3 +1,5 @@
+import random
+
 def exp(x=15):
 	y = random.random()
 	return float((-1/x)*math.log(y))
