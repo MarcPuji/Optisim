@@ -2,7 +2,7 @@ import distex2
 
 def simex2(max_temps):
 	global rellotge
-	global PE
+	global nc
 	
 	iniciar_variables()
 	esdeveniment = obtenir_esdeveniment()
@@ -27,16 +27,18 @@ def simex2(max_temps):
 		esdeveniment = obtenir_esdeveniment()
 		esdeveniment_anterior=rellotge
 		
-	return float(temps_espera_total/rellotge)
+	return float(temps_espera_total/nc)
 
 def iniciar_variables():
 	global PE
 	global rellotge
 	global llista_esdeveniments
+	global nc
 	
 	rellotge = 0.0
-	
 	PE = 0
+	nc = 0
+	
 	llista_esdeveniments = []
 	afegir_trucada()
 	
@@ -64,6 +66,7 @@ def arribada_trucada():
 		llista_esdeveniments.append([rellotge + t, 'acaba consulta'])
 	afegir_trucada()
 	PE += 1
+	nc += 1
 	
 def sortida_trucada():
 	global llista_esdeveniments
@@ -74,6 +77,5 @@ def sortida_trucada():
 		t = distex.consulta()
 		llista_esdeveniments.append([rellotge+t,'acaba consulta'])
 	PE -= 1
-		
 	
 		
