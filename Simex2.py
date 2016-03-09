@@ -7,7 +7,7 @@ def simex2(max_temps):
 	iniciar_variables()
 	esdeveniment = obtenir_esdeveniment()
 	
-	temps_espera_total
+	temps_espera_total=0.0
 	esdeveniment_anterior=0.0
 	
 	while rellotge <= max_temps:
