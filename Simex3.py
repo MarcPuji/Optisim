@@ -2,21 +2,20 @@ import distex3
 
 def simex3(max_temps):
 	global rellotge
-	global n
-	global PCT
-	global PPT
+	global PP
+	global PC
 	
 	iniciar_variables()
 	esdeveniment = obtenir_esdeveniment()
+	t_anterior = 0.0
 	
 	while rellotge <= max_temps:
 		
 		rellotge = esdeveniment[0]
 		tipus = esdeveniment[1]
 		
-		n += 1
-		PCT += PC
-		PPT += PP
+		t_espera = rellotge - t_anterior
+		t_espera_total = t_espera_total + t_espera*(PP+PC)
 		
 		if tipus == 'arribada pacient':
 			arribada_pacient()
@@ -26,16 +25,25 @@ def simex3(max_temps):
 			sortida_prova()
 		
 		esdeveniment = obtenir_esdeveniment()
-	a = float(PCT/n)
-	b = float(PPT/n)
-	return [a,b]
+		t_anterior = rellotge
+
+	while PC > 0 and PP > 0:
+		
+		rellotge = esdeveniment[0]
+		tipus = esdeveniment[1]
+		
+		if tipus == 'sortida consulta':
+			sortida_consulta()
+		if tipus == 'sortida prova':
+			sortida_prova()
+			
+	return (t_espera_total/rellotge)
 	
 def iniciar_variables():
 	global rellotge
 	global PC
 	global PP
 	global llista_esdeveniments
-	global n
 	
 	rellotge = 0.0
 	
@@ -45,13 +53,7 @@ def iniciar_variables():
 	PC = 0
 	PP = 0
 	afegir_arribada()
-	
-	#numero de vegades que mirem quants pacients esperen:
-	n = 1
-	#total de pacients esperant a consulta
-	PCT = 0
-	#total de pacients esperant a prova
-	PPT = 0
+
 	
 def afegir_arribada():
 	global llista_esdeveniments
