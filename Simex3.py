@@ -11,11 +11,15 @@ def simex3(max_temps):
 	
 	while rellotge <= max_temps:
 		
+		pacients_esperant = 0
 		rellotge = esdeveniment[0]
 		tipus = esdeveniment[1]
 		
 		t_espera = rellotge - t_anterior
-		t_espera_total = t_espera_total + t_espera*(PP+PC)
+		if PC > 2:
+			pacients_esperant = PC - 2
+		if PP > 1:
+			pacients_esperant = pacients_esperant + PP - 1
 		
 		if tipus == 'arribada pacient':
 			arribada_pacient()
