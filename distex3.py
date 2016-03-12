@@ -1,8 +1,9 @@
 import random
+import math
 
 def exp(x=15):
 	y = random.random()
-	return float((-1/x)*math.log(y))
+	return float((-x)*math.log(y))
 	
 def uni():
 	y = random.random()
