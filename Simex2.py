@@ -3,6 +3,7 @@ import distex2
 def simex2(max_temps):
 	global rellotge
 	global nc
+	global PE
 	
 	iniciar_variables()
 	esdeveniment = obtenir_esdeveniment()
@@ -16,7 +17,8 @@ def simex2(max_temps):
 		tipus = esdeveniment[1]
 		
 		temps_espera = rellotge-esdeveniment_anterior
-		temps_espera_total += temps_espera*PE
+		if PE > 1:
+			temps_espera_total += temps_espera*(PE-1)
 		
 		
 		if tipus == 'arribada trucada':
@@ -60,12 +62,13 @@ def arribada_trucada():
 	global llista_esdeveniments
 	global rellotge
 	global PE
+	global nc
 	
-	if PE = 0:
+	if PE == 0:
 		t = distex2.consulta()
 		llista_esdeveniments.append([rellotge + t, 'acaba consulta'])
-	afegir_trucada()
 	PE += 1
+	afegir_trucada()
 	nc += 1
 	
 def sortida_trucada():
@@ -74,8 +77,18 @@ def sortida_trucada():
 	global PE
 	
 	if PE > 1:
-		t = distex.consulta()
+		t = distex2.consulta()
 		llista_esdeveniments.append([rellotge+t,'acaba consulta'])
 	PE -= 1
 	
-		
+	
+def escriu():
+	f = open('ex2.txt','w')
+	for i in range(1000):
+		 e = str(simex2(12*60))
+		 e = e.split('.')
+		 e = ','.join(e)
+		 f.write(e + '\n')
+	f.close()
+	
+escriu()
