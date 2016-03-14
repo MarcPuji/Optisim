@@ -18,5 +18,19 @@ def simex4(dies):
 		demanda_total += demanda
 		d += 1
 	return float(total_falten/demanda_total)
-	
-print(simex4(90))
+
+def mitjanes():
+	l = []
+	for i in range(100):
+		m = simex4(60)
+		l.append(m)
+	return (sum(l)/100)	
+def escriu():
+	f = open('ex4.txt.','w')
+	for i in range(100):
+		t = str(mitjanes())
+		t = t.split('.')
+		t = ','.join(t)
+		f.write(t + '\n')
+	f.close()
+escriu()

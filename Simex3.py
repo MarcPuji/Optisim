@@ -118,15 +118,21 @@ def sortida_prova():
 	PP = PP - 1
 
 
+def mitjanes():
+	l = []
+	for i in range(100):
+		m = simex3(8*60)
+		l.append(m)
+	return (sum(l)/100)
+
 def escriu():
 	f = open('ex3.txt.','w')
-	for i in range(1000):
-		t = str(simex3(8*60))
+	for i in range(100):
+		t = str(mitjanes())
 		t = t.split('.')
 		t = ','.join(t)
 		f.write(t + '\n')
 	f.close()
 
 escriu()
-		
 	
