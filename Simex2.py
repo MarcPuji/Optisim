@@ -28,6 +28,20 @@ def simex2(max_temps):
 		
 		esdeveniment = obtenir_esdeveniment()
 		esdeveniment_anterior=rellotge
+	
+	while PE > 1:
+		
+		rellotge = esdeveniment[0]
+		tipus = esdeveniment[1]
+		
+		temps_espera = rellotge - esdeveniment_anterior
+		temps_espera_total += temps_espera*(PE-1)
+		
+		if tipus == 'acaba consulta':
+			sortida_trucada()
+		esdeveniment = obtenir_esdeveniment()
+		esdeveniment_anterior = rellotge
+		
 		
 	return float(temps_espera_total/nc)
 
@@ -81,11 +95,17 @@ def sortida_trucada():
 		llista_esdeveniments.append([rellotge+t,'acaba consulta'])
 	PE -= 1
 	
-	
+def mitjanes():
+	l = []
+	for i in range(100):
+		m = simex2(8*60)
+		l.append(m)
+	return (sum(l)/100)
+		
 def escriu():
 	f = open('ex2.txt','w')
-	for i in range(1000):
-		 e = str(simex2(12*60))
+	for i in range(100):
+		 e = str(mitjanes())
 		 e = e.split('.')
 		 e = ','.join(e)
 		 f.write(e + '\n')
