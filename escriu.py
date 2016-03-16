@@ -1,4 +1,4 @@
-import Munta
+import Munta_final
 
 def escriu(n):
 	
@@ -8,7 +8,7 @@ def escriu(n):
 	
 	for i in range(n):
 		
-		c = Munta.Simular_Munta(8*60)
+		c = Munta_final.Simular_Munta(8*60)
 		ma = str(c[0])
 		mb = str(c[1])
 		mc = str(c[2])
