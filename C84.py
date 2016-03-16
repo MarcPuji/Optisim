@@ -23,7 +23,7 @@ def preg4(v0,v1,v2):
 	vh = lg[1][1]
 	vg = lg[2][1]
 	
-	v = ((v0[0] + v1[0] + v2[0])/2.0 , (v0[1] + v1[1] + v2[1])/2.0)
+	v = ((v0[0] + v1[0] + v2[0])/3.0 , (v0[1] + v1[1] + v2[1])/3.0)
 	vr = (2*v[0] - vg[0],2*v[1] - vg[1])
 	
 	return recu4(v,vr,vs,vh,vg,0)
@@ -36,18 +36,38 @@ def recu4(v,vr,vs,vh,vg,k):
 		fh = f(vh[0],vh[1])
 		fg = f(vg[0],vg[1])
 		if fr < fs:
+			print('c1')
 			ve = (3*v[0] - 2*vg[0],3*v[1] - 2*vg[1])
-			if f(ve[0],ve[1]) < f(vs[0],vs[1]):
+			if f(ve[0],ve[1]) < fs:
 				return recu4(v,vr,vs,vh,ve,k+1)
 			else:
 				return recu4(v,vr,vs,vh,vr,k+1)
 		elif fs <= fr and fr < fh:
-			return recu4(v,vr,vs,vh,vr,k+1)
+			print('c2')
+			return recu4(v,vr,vs,vr,vh,k+1)
 		elif fh <= fr and fr < fg:
-			return recu4(v,vg,vs,vh,vr,k+1)
+			print('c3')
+			vr = vg
+			fr = f(vg[0],vg[1])
+			vc = (0.5*(v[0] + vg[0]),0.5*(v[1] + vg[1]))
+			fc = f(vc[0],vc[1])
+			if fc < fg:
+				return recu4(v,vg,vs,vh,vc,k+1)
+			else:
+				print('lel')
+				k+=1
 		elif fr >= fg:
-			return recu4(v,vg,vs,vh,vr,k+1)
-	print([f(vs[0],vs[1]),f(vh[0],vh[1]),f(vg[0],vg[1])])
+			print('c4')
+			vr = vg
+			fr = f(vg[0],vg[1])
+			vc = (0.5*(v[0] + vg[0]),0.5*(v[1] + vg[1]))
+			fc = f(vc[0],vc[1])
+			if fc < fg:
+				return recu4(v,vg,vs,vh,vc,k+1)
+			else:
+				print('lel')
+				k+=1
+	return([f(vs[0],vs[1]),f(vh[0],vh[1]),f(vg[0],vg[1])])
 
 
 
