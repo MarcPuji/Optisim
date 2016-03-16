@@ -49,7 +49,6 @@ def Simular_Munta(maxim_temps):
 	caixes_pendents = caixes['A'][0] + caixes['B'][0] + caixes['C'][0]
 	
 	while caixes_pendents > 0:
-		
 		rellotge = esdeveniment[0]
 		tipus_esdeveniment = esdeveniment[1]
 		
@@ -74,7 +73,7 @@ def Simular_Munta(maxim_temps):
 			esdeveniment = obtenir_esdeveniment()
 		esdeveniment_anterior = rellotge
 		
-	#retorna el valor d'espera promig per cada caixa (temps d'espera global de cada tipus/nombre de caixes de cada tipus)	
+	#retorna el valor d'espera promig per cada caixa (temps d'espera global de cada tipus/nombre de caixes de cada tipus)
 	return caixes['A'][1]/caixes['A'][2], caixes['B'][1]/caixes['B'][2], caixes['C'][1]/caixes['C'][2]
 
 def iniciar_variables():
@@ -176,7 +175,7 @@ def arribada_C():
 def possible_carregar():
 	global caixes 
 	
-	pes = caixes['C'][0]*200+caixes['B'][0]*100+caixes['A'][0]*50
+	pes = caixes['A'][0]*200+caixes['B'][0]*100+caixes['C'][0]*50
 	
 	#mirem que el pes disponible sigui major que 400 i que estigui disponible el muntacarregues
 	return pes >= 400 and estat == 1
@@ -207,6 +206,7 @@ def carrega():
 	elif caixes['C'][0]>=4 and caixes['A'][0]>=1:
 		caixes['C'][0]-=4
 		caixes['A'][0]-=1
+	
 	elif caixes['C'][0]>=2 and caixes['B'][0]>=3:
 		caixes['C'][0]-=2
 		caixes['B'][0]-=3
@@ -223,6 +223,7 @@ def carrega():
 	elif caixes['B'][0]>=2 and caixes['A'][0]>=1:
 		caixes['B'][0]-=2
 		caixes['A'][0]-=1
+	
 	#2 caixes (2*200)
 	elif caixes['A'][0]>=2:
 		caixes['A'][0]-=2
@@ -243,9 +244,6 @@ def arribada_muntacarregues():
 def final():
 	global caixes
 	
-	pes = caixes['C'][0]*200+caixes['B'][0]*100+caixes['A'][0]*50
+	pes = caixes['A'][0]*200+caixes['B'][0]*100+caixes['C'][0]*50
 	
 	return (pes<400)
-	
-	
-print(Simular_Munta(8*60))

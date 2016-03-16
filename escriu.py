@@ -7,19 +7,11 @@ def escriu(n):
 	fc = open('CaixesC.txt','w')
 	
 	for i in range(n):
-		lla = []
-		llb = []
-		llc = []
 		
-		c = Munta.Simular_Munta()
-		
-		lla.append(c[0])
-		llb.append(c[1])
-		llc.append(c[2])
-		
-		ma = str(sum(lla)/len(lla))
-		mb = str(sum(llb)/len(llb))
-		mc = str(sum(llc)/len(llc))
+		c = Munta.Simular_Munta(8*60)
+		ma = str(c[0])
+		mb = str(c[1])
+		mc = str(c[2])
 		
 		ma = ma.split('.')
 		ma = ','.join(ma)
@@ -28,12 +20,12 @@ def escriu(n):
 		mc = mc.split('.')
 		mc = ','.join(mc)
 		
-		fa.write(str(ma) + '\n')
-		fb.write(str(mb) + '\n')
-		fc.write(str(mc) + '\n')
+		fa.write(ma + '\n')
+		fb.write(mb + '\n')
+		fc.write(mc + '\n')
+		
 	fa.close()
 	fb.close()
 	fc.close()
 
-
-escriu(100)
+escriu(10000)
